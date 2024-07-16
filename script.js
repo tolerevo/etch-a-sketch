@@ -1,83 +1,35 @@
 /* defining constants */
-const mainContainer = document.querySelector('.container');
-mainContainer.setAttribute('style', 'width: 300px; height: 300px; background-color: #88FCBB; padding: 10px;');
-const divSquare = document.createElement('div');
-divSquare.setAttribute('class','square');
-divSquare.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare);
-const divSquare2 = document.createElement('div');
-divSquare2.setAttribute('class','square');
-divSquare2.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare2);
-const divSquare3 = document.createElement('div');
-divSquare3.setAttribute('class','square');
-divSquare3.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare3);
-const divSquare4 = document.createElement('div');
-divSquare4.setAttribute('class','square');
-divSquare4.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare4);
-const divSquare5 = document.createElement('div');
-divSquare5.setAttribute('class','square');
-divSquare5.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare5);
-const divSquare6 = document.createElement('div');
-divSquare6.setAttribute('class','square');
-divSquare6.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare6);
-const divSquare7 = document.createElement('div');
-divSquare7.setAttribute('class','square');
-divSquare7.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare7);
-const divSquare8 = document.createElement('div');
-divSquare8.setAttribute('class','square');
-divSquare8.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare8);
-const divSquare9 = document.createElement('div');
-divSquare9.setAttribute('class','square');
-divSquare9.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare9);
-const divSquare10 = document.createElement('div');
-divSquare10.setAttribute('class','square');
-divSquare10.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare10);
-const divSquare11 = document.createElement('div');
-divSquare11.setAttribute('class','square');
-divSquare11.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare11);
-const divSquare12 = document.createElement('div');
-divSquare12.setAttribute('class','square');
-divSquare12.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare12);
-const divSquare13 = document.createElement('div');
-divSquare13.setAttribute('class','square');
-divSquare13.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare13);
-const divSquare14 = document.createElement('div');
-divSquare14.setAttribute('class','square');
-divSquare14.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare14);
-const divSquare15 = document.createElement('div');
-divSquare15.setAttribute('class','square');
-divSquare15.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare15);
-const divSquare16 = document.createElement('div');
-divSquare16.setAttribute('class','square');
-divSquare16.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare16);
-const divSquare17 = document.createElement('div');
-divSquare17.setAttribute('class','square');
-divSquare17.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare17);
-const divSquare18 = document.createElement('div');
-divSquare18.setAttribute('class','square');
-divSquare18.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare18);
-const divSquare19 = document.createElement('div');
-divSquare19.setAttribute('class','square');
-divSquare19.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare9);
-const divSquare20 = document.createElement('div');
-divSquare20.setAttribute('class','square');
-divSquare20.setAttribute('style', 'width: 20px; height: 20px; background-color: #010101; border: 1px solid white;');
-mainContainer.appendChild(divSquare20);
+const mainContainer = document.createElement("div");
+mainContainer.classList.add("main-container");
+document.body.appendChild(mainContainer);
+const hoveredSquare = document.createElement("input");
+hoveredSquare.type = "checkbox";
+document.body.appendChild(hoveredSquare);
+const hoveredSquareLabel = document.createElement("label");
+hoveredSquareLabel.htmlFor = "hoveredSquare";
+hoveredSquareLabel.textContent = "changing-color Mode";
+document.body.appendChild(hoveredSquareLabel);
+
+let squareCount = 16;
+
+const changeColor = (event) => {
+  if (hoveredSquare.checked === true) {
+    event.target.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+  } else {
+    event.target.classList.add("defaultColor")
+  }
+  event.target.classList.add("changed")
+}
+
+const renderBoard = ()=> {
+  for (i=0 ; i < squareCount ** 2 ; i++) {
+      let square = document.createElement('div');
+      square.addEventListener('mouseover', changeColor);
+      square.classList.add(`square`)
+      square.classList.add(`square-${i}`)
+      mainContainer.appendChild(square);
+  }
+  mainContainer.style.width = `${squareCount * 20}px`;
+}
+
+renderBoard();

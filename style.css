@@ -135,10 +135,27 @@ table {
 }
 
 /* My styles */
-html {
+body {
   box-sizing: border-box;
 }
 
-.container {
+.main-container {
+  border: 1px solid navy;
   display: flex;
+  /*flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center; */
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 320px;
+}
+
+.square {
+  width: 20px;
+  height: 20px;
+}
+
+.defaultColor {
+  background-color: blueviolet;
 }
